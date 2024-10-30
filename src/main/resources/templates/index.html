@@ -56,7 +56,7 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 16.159434, lng: 106.628482 }, // Center of the map
+                center: { lat: 16.159434, lng: 106.628482 },
                 zoom: 6.3
             });
         }
@@ -79,15 +79,14 @@
         }
 
         $(document).ready(function () {
-            // Handle clicks on sidebar items
             $('.sidebar').on('click', 'li', function () {
                 let regionId = $(this).data('region-id');
                 $.ajax({
                     url: '/api/map/v1?regionId=' + regionId,
                     method: 'GET',
                     success: function(data) {
-                        clearMarkers(); // Clear existing markers
-                        addMarkers(data); // Add new markers
+                        clearMarkers();
+                        addMarkers(data);
                     },
                     error: function(xhr, status, error) {
                         console.error('Error fetching coordinates:', error);
