@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps with Territories</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar li:hover {
+            background-color: #ddd;
+        }
+
+        .map {
+            flex-grow: 1;
+            height: 100%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        let map;
+        let markers = [];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 16.159434, lng: 106.628482 }, // Center of the map
+                zoom: 6.3
+            });
+        }
+
+        function addMarkers(locations) {
+            locations.forEach(location => {
+                const coords = location.coords.split(',').map(Number);
+                const marker = new google.maps.Marker({
+                    position: { lat: coords[0], lng: coords[1] },
+                    map: map,
+                    title: location.name
+                });
+                markers.push(marker);
+            });
+        }
+
+        function clearMarkers() {
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+        }
+
+        $(document).ready(function () {
+            // Handle clicks on sidebar items
+            $('.sidebar').on('click', 'li', function () {
+                let regionId = $(this).data('region-id');
+                $.ajax({
+                    url: '/api/map/v1?regionId=' + regionId,
+                    method: 'GET',
+                    success: function(data) {
+                        clearMarkers(); // Clear existing markers
+                        addMarkers(data); // Add new markers
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching coordinates:', error);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bcLgaS8N_W2plAJq7z3MudgXNlF2V4A&callback=initMap" async defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h2>Vùng lãnh thổ</h2>
+        <ul th:attr="id='region-' + ${region.locationId}" th:each="region : ${regions}">
+            <li th:text="${region.name}"
+                th:attr="data-region-id=${region.locationId}">Vùng</li>
+        </ul>
+    </div>
+    <div id="map" class="map"></div>
+</div>
+</body>
+</html>
