@@ -27,11 +27,13 @@ public class LocationController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<?> getLocations(@RequestParam(required = false) String regionName, @RequestParam(required = false) Integer regionId) {
+    public ResponseEntity<?> getLocations(@RequestParam(required = false) String regionName, @RequestParam(required = false) Integer regionId, @RequestParam(required = false) Integer locationId) {
         if (regionName != null) {
             return ResponseEntity.ok(locationService.getByRegion(regionName));
         } else if (regionId != null){
             return ResponseEntity.ok(locationService.getByRegionId(regionId));
+        }else if (locationId != null){
+            return ResponseEntity.ok(locationService.getById(locationId));
         } else {
             return ResponseEntity.ok(locationService.allLocations());
         }

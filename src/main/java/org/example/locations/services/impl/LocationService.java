@@ -26,7 +26,7 @@ public class LocationService implements ILocationService {
 
     @Override
     public LocationDto getById(Integer id) {
-        return null;
+        return locationMapper.toDto(locationRepository.getById(id));
     }
 
     @Override
