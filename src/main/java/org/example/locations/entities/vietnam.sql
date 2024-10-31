@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2024 at 08:09 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Oct 31, 2024 at 05:53 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,7 +72,7 @@ INSERT INTO `tbl_location` (`locationId`, `name`, `parentId`, `coords`) VALUES
 (31, 'Ninh Bình', 3, '20.2506, 105.9745'),
 (32, 'Thái Bình', 3, '20.4448, 106.3378'),
 (33, 'Vĩnh Phúc', 3, '21.3366, 105.5911'),
-(34, 'Thanh Hoá', 4, '19.8067, 105.7856'),
+(34, 'Thanh Hóa', 4, '19.8067, 105.7856'),
 (35, 'Nghệ An', 4, '18.8065, 105.3510'),
 (36, 'Hà Tĩnh', 4, '18.3314, 105.9091'),
 (37, 'Quảng Bình', 4, '17.4731, 106.6042'),
@@ -83,13 +83,13 @@ INSERT INTO `tbl_location` (`locationId`, `name`, `parentId`, `coords`) VALUES
 (42, 'Quảng Ngãi', 5, '15.1206, 108.7922'),
 (43, 'Bình Định', 5, '14.1665, 108.9027'),
 (44, 'Phú Yên', 5, '13.0882, 109.0928'),
-(45, 'Khánh Hoà', 5, '12.2453, 109.1943'),
+(45, 'Khánh Hòa', 5, '12.2453, 109.1943'),
 (46, 'Ninh Thuận', 5, '11.5677, 108.9886'),
 (47, 'Bình Thuận', 5, '11.0904, 108.0721'),
 (48, 'Kon Tum', 6, '14.3498, 108.0001'),
 (49, 'Gia Lai', 6, '13.9758, 108.0193'),
-(50, 'Đắc Lắc', 6, '12.7100, 108.2378'),
-(51, 'Đắc Nông', 6, '12.2982, 107.6919'),
+(50, 'Đắk Lắk', 6, '12.7100, 108.2378'),
+(51, 'Đắk Nông', 6, '12.2982, 107.6919'),
 (52, 'Lâm Đồng', 6, '11.5753, 108.1429'),
 (53, 'Bình Phước', 7, '11.7766, 106.6860'),
 (54, 'Bình Dương', 7, '11.3254, 106.7114'),
@@ -109,7 +109,7 @@ INSERT INTO `tbl_location` (`locationId`, `name`, `parentId`, `coords`) VALUES
 (68, 'Sóc Trăng', 8, '9.6031, 105.9805'),
 (69, 'Bạc Liêu', 8, '9.2879, 105.7213'),
 (70, 'Cà Mau', 8, '9.1763, 105.1524'),
-(71, 'Thành phố Cần Thơ', 8, '10.0452, 105.7469');
+(71, 'Cần Thơ', 8, '10.0452, 105.7469');
 
 --
 -- Indexes for dumped tables
