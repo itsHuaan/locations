@@ -1,6 +1,6 @@
 package org.example.locations.repositories.impl;
 
-import org.example.locations.dtos.AllLocationDto;
+import org.example.locations.dtos.CityDto;
 import org.example.locations.entities.LocationEntity;
 import org.example.locations.mappers.rowmapers.LocationRowMapper;
 import org.example.locations.repositories.ILocationRepository;
@@ -39,9 +39,9 @@ public class LocationRepository implements ILocationRepository {
     }
 
     @Override
-    public List<AllLocationDto> getByRegionName(String region) {
+    public List<CityDto> getByRegionName(String region) {
         String query = "SELECT child.locationId, child.name, child.coords, parent.name FROM tbl_location AS child JOIN tbl_location AS parent ON child.parentId = parent.locationId WHERE parent.name = ? ORDER BY child.name";
-        return jdbcTemplate.query(query, (rs, rowNum) -> new AllLocationDto(
+        return jdbcTemplate.query(query, (rs, rowNum) -> new CityDto(
                 rs.getInt(1),
                 rs.getString(2),
                 rs.getString(3),
@@ -49,9 +49,9 @@ public class LocationRepository implements ILocationRepository {
     }
 
     @Override
-    public List<AllLocationDto> getByRegionId(int regionId) {
+    public List<CityDto> getByRegionId(int regionId) {
         String query = "SELECT child.locationId, child.name, child.coords, parent.name FROM tbl_location AS child JOIN tbl_location AS parent ON child.parentId = parent.locationId WHERE parent.locationId = ? ORDER BY child.name";
-        return jdbcTemplate.query(query, (rs, rowNum) -> new AllLocationDto(
+        return jdbcTemplate.query(query, (rs, rowNum) -> new CityDto(
                 rs.getInt(1),
                 rs.getString(2),
                 rs.getString(3),
@@ -59,9 +59,9 @@ public class LocationRepository implements ILocationRepository {
     }
 
     @Override
-    public List<AllLocationDto> getAllLocations() {
+    public List<CityDto> getAllLocations() {
         String query = "SELECT child.locationId, child.name, child.coords, parent.name FROM tbl_location AS child JOIN tbl_location AS parent ON child.parentId = parent.locationId WHERE child.locationId > 8 ORDER BY child.name";
-        return jdbcTemplate.query(query, (rs, rowNum) -> new AllLocationDto(
+        return jdbcTemplate.query(query, (rs, rowNum) -> new CityDto(
                 rs.getInt(1),
                 rs.getString(2),
                 rs.getString(3),

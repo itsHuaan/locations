@@ -1,8 +1,7 @@
 package org.example.locations.services.impl;
 
-import org.example.locations.dtos.AllLocationDto;
+import org.example.locations.dtos.CityDto;
 import org.example.locations.dtos.LocationDto;
-import org.example.locations.entities.LocationEntity;
 import org.example.locations.mappers.entitymappers.LocationMapper;
 import org.example.locations.repositories.impl.LocationRepository;
 import org.example.locations.services.ILocationService;
@@ -35,17 +34,17 @@ public class LocationService implements ILocationService {
     }
 
     @Override
-    public List<AllLocationDto> getByRegion(String region) {
+    public List<CityDto> getByRegion(String region) {
         return locationRepository.getByRegionName(region);
     }
 
     @Override
-    public List<AllLocationDto> getByRegionId(int regionId) {
+    public List<CityDto> getByRegionId(int regionId) {
         return locationRepository.getByRegionId(regionId);
     }
 
     @Override
-    public List<AllLocationDto> getAllLocations() {
+    public List<CityDto> getAllLocations() {
         return locationRepository.getAllLocations();
     }
 

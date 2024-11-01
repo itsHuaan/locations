@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AllLocationDto {
+public class CityDto {
     private int locationId;
     private String name;
     private String coords;

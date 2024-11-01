@@ -2,6 +2,7 @@ let map;
 let markers = [];
 let cityPolygon;
 let openInfoWindow = null
+let cities = {};
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -49,14 +50,13 @@ function addMarkers(locations) {
             infoWindow = new google.maps.InfoWindow({
                 ariaLabel: location.name,
                 content: `<div style="display: flex; flex-direction: column;">
-        <h3>${location.name}</h3>
-        <p>Coords: ${marker.position.lat}, ${marker.position.lng}</p>
-    </div>`
+                            <h3>${location.name}</h3>
+                            <p>Coords: ${marker.position.lat}, ${marker.position.lng}</p>
+                        </div>`
             });
             infoWindow.open(map, marker);
             openInfoWindow = infoWindow;
         });
-
         markers.push(marker);
     });
 }
@@ -116,6 +116,46 @@ function drawPolygon(polygonCoords, color) {
     const bounds = new google.maps.LatLngBounds();
     polygonCoords.forEach(coord => bounds.extend(coord));
     map.fitBounds(bounds);
+}
+
+$.ajax({
+    url: '/api/map/v1',
+    method: 'GET',
+    success: function(data) {
+        data.forEach(city => {
+            const [lat, lng] = city.coords.split(',').map(Number);
+            cities[city.locationId] = {
+                name: city.name,
+                lat: lat,
+                lng: lng,
+                region: city.region
+            };
+        });
+    },
+    error: function(xhr, status, error) {
+        console.error('Error fetching cities:', error);
+    }
+});
+
+function calculateDistance() {
+    const city1 = document.getElementById('city1').value;
+    const city2 = document.getElementById('city2').value;
+
+    if (city1 && city2 && city1 !== city2) {
+        const loc1 = new google.maps.LatLng(cities[city1].lat, cities[city1].lng);
+        const loc2 = new google.maps.LatLng(cities[city2].lat, cities[city2].lng);
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(loc1, loc2) / 1000;
+
+        document.getElementById('distance-result').innerText = `Distance: ${distance.toFixed(2)} km`;
+    } else {
+        document.getElementById('distance-result').innerText = 'Please select two different cities.';
+    }
+}
+
+function resetMap() {
+    map.setCenter({ lat: 16.159434, lng: 106.628482 });
+    map.setZoom(6.3);
+    document.getElementById('distance-result').innerText = '';
 }
 
 $(document).ready(function () {
