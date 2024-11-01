@@ -130,6 +130,13 @@ ul {
     border-radius: 5px;
 }
 
+.distance-section div {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .calculate-distance {
     display: block;
     width: 100%;

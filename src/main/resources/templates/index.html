@@ -28,6 +28,7 @@
             <option value="" disabled selected>Chọn thành phố 1</option>
             <option th:each="city : ${cities}" th:attr="value=${city.locationId}" th:text="${city.name}">City</option>
             </select>
+            <div><i class="fa-solid fa-arrow-down-long"></i></div>
             <select id="city2">
                 <option value="" disabled selected>Chọn thành phố 2</option>
                 <option th:each="city : ${cities}" th:attr="value=${city.locationId}" th:text="${city.name}">City

@@ -152,12 +152,6 @@ function calculateDistance() {
     }
 }
 
-function resetMap() {
-    map.setCenter({ lat: 16.159434, lng: 106.628482 });
-    map.setZoom(6.3);
-    document.getElementById('distance-result').innerText = '';
-}
-
 $(document).ready(function () {
     $('ul#regions > li').each(function () {
         const regionId = $(this).data('region-id');
