@@ -45,8 +45,8 @@ public class LocationService implements ILocationService {
     }
 
     @Override
-    public List<AllLocationDto> allLocations() {
-        return locationRepository.allLocations();
+    public List<AllLocationDto> getAllLocations() {
+        return locationRepository.getAllLocations();
     }
 
     @Override

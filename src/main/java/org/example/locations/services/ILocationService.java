@@ -10,6 +10,6 @@ public interface ILocationService extends IBaseService<LocationDto, Integer> {
     LocationDto getByCoordinate(String latitude, String longitude);
     List<AllLocationDto> getByRegion(String region);
     List<AllLocationDto> getByRegionId(int regionId);
-    List<AllLocationDto> allLocations();
+    List<AllLocationDto> getAllLocations();
     List<LocationDto> getRegion();
 }

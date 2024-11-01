@@ -21,6 +21,7 @@ public class LocationController {
 
     @GetMapping("/all")
     public String findAll(Model model) {
+        model.addAttribute("cities", locationService.getAllLocations());
         model.addAttribute("regions", locationService.getRegion());
         return "index";
     }
@@ -35,7 +36,7 @@ public class LocationController {
         }else if (locationId != null){
             return ResponseEntity.ok(locationService.getById(locationId));
         } else {
-            return ResponseEntity.ok(locationService.allLocations());
+            return ResponseEntity.ok(locationService.getAllLocations());
         }
     }
 

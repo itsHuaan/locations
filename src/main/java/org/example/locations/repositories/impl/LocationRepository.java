@@ -59,7 +59,7 @@ public class LocationRepository implements ILocationRepository {
     }
 
     @Override
-    public List<AllLocationDto> allLocations() {
+    public List<AllLocationDto> getAllLocations() {
         String query = "SELECT child.locationId, child.name, child.coords, parent.name FROM tbl_location AS child JOIN tbl_location AS parent ON child.parentId = parent.locationId WHERE child.locationId > 8 ORDER BY child.name";
         return jdbcTemplate.query(query, (rs, rowNum) -> new AllLocationDto(
                 rs.getInt(1),

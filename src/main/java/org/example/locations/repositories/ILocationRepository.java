@@ -9,6 +9,6 @@ public interface ILocationRepository extends IBaseRepository<LocationEntity, Int
     LocationEntity getByCoordinate(String latitude, String longitude);
     List<AllLocationDto> getByRegionName(String region);
     List<AllLocationDto> getByRegionId(int regionId);
-    List<AllLocationDto> allLocations();
+    List<AllLocationDto> getAllLocations();
     List<LocationEntity> getRegions();
 }
